@@ -8,44 +8,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import net.itinajero.model.Vacante;
 import net.itinajero.service.IVacantesService;
 
 @Controller
-public class homeController {
+public class HomeController {
+	
 	
 	@Autowired
 	private IVacantesService serviceVacantes;
 	
+	
 	@GetMapping("/tabla")
-	public String mostrarTablas(Model model) {
+	public String mostrarTabla(Model model) {
 		List<Vacante> lista = serviceVacantes.buscarTodas();
 		model.addAttribute("vacantes", lista);
-		 
 		
 		return "tabla";
 	}
 	
+	
 	@GetMapping("/detalle")
-	public String mostrarDetalles(Model model) {
+	public String mostrarDetalle(Model model) {
+		
+		
 		Vacante vacante = new Vacante();
-		vacante.setNombre("Influenser");
-		vacante.setDescripcion("Se solicita influencer para pagar con historias de IG");
+		vacante.setNombre("Ingeniero de comunicaciones");
+		vacante.setDescripcion("Se solicita ingeniero para dar soporte a intranet");
 		vacante.setFecha(new Date());
-		vacante.setSalario(0.0);
-		
+		vacante.setSalario(9700.0);
 		model.addAttribute("vacante", vacante);
-		
 		return "detalle";
+		
 	}
-
+	
 	@GetMapping("/listado")
-	public String mostrarListado(Model model) {
+	public String mostrarListado(Model model ) {
 		List<String> lista = new LinkedList<String>();
-		lista.add("Influenser");
-		lista.add("Profesor de Filosofia");
-		lista.add("Streamer");
-		lista.add("Tiktoker");
+		lista.add("Ingeniero de Sistemas");
+		lista.add("Auxiliar de Contabilidad");
+		lista.add("Vendedor");
+		lista.add("Arquitecto");
 		
 		model.addAttribute("empleos", lista);
 		
@@ -53,14 +58,18 @@ public class homeController {
 	}
 	
 	
-	@GetMapping("/")
-	public String mostrarHome(Model model) {
-		
-		List<Vacante> lista = serviceVacantes.buscarTodas();
-		model.addAttribute("vacantes", lista);
+
+	@GetMapping ("/")
+	public String mostrarHome(Model model ) {
+	
 		
 		return "home";
-		
+	}
+	
+	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
 	}
 	
 }
