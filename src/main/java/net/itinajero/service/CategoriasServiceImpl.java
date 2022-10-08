@@ -1,12 +1,14 @@
 package net.itinajero.service;
 
-
 import java.util.LinkedList;
 import java.util.List;
+
 import org.springframework.stereotype.Service;
+
 import net.itinajero.model.Categoria;
 
 @Service
+//@Primary
 public class CategoriasServiceImpl implements ICategoriasService{
 
 	private List<Categoria> lista = null;
@@ -14,54 +16,72 @@ public class CategoriasServiceImpl implements ICategoriasService{
 	public CategoriasServiceImpl() {
 		lista = new LinkedList<Categoria>();
 		
-		Categoria categoria1 = new Categoria();
-		categoria1.setId(1);
-		categoria1.setNombre("Tecnologia");
-		categoria1.setDescripcion("Apartado para las Trabajos relacionados con la tecnologia");
+		// Creamos algunas Categorias para poblar la lista ...
 		
-		Categoria categoria2 = new Categoria();
-		categoria2.setId(2);
-		categoria2.setNombre("Construccion");
-		categoria2.setDescripcion("Trabajos relacionados con la arquitectura");
+		// Categoria 1
+		Categoria cat1 = new Categoria();
+		cat1.setId(1);
+		cat1.setNombre("Contabilidad");
+		cat1.setDescripcion("Descripcion de la categoria Contabilidad");
 		
-		Categoria categoria3 = new Categoria();
-		categoria3.setId(3);
-		categoria3.setNombre("Leyes");
-		categoria3.setDescripcion("leyes");
-	
+		// Categoria 2
+		Categoria cat2 = new Categoria();
+		cat2.setId(2);
+		cat2.setNombre("Ventas");
+		cat2.setDescripcion("Trabajos relacionados con Ventas");
 		
-		lista.add(categoria1);
-		lista.add(categoria2);
-		lista.add(categoria3);
+					
+		// Categoria 3
+		Categoria cat3 = new Categoria();
+		cat3.setId(3);
+		cat3.setNombre("Comunicaciones");
+		cat3.setDescripcion("Trabajos relacionados con Comunicaciones");
 		
+		// Categoria 4
+		Categoria cat4 = new Categoria();
+		cat4.setId(4);
+		cat4.setNombre("Arquitectura");
+		cat4.setDescripcion("Trabajos de Arquitectura");
+		
+		// Categoria 5
+		Categoria cat5 = new Categoria();
+		cat5.setId(5);
+		cat5.setNombre("Educacion");
+		cat5.setDescripcion("Maestros, tutores, etc");
+		
+		// Categoria 6
+		Categoria cat6 = new Categoria();
+		cat6.setId(6);
+		cat6.setNombre("Desarrollo de software");
+		cat6.setDescripcion("Trabajo para programadores");
+		
+		/**
+		 * Agregamos los 5 objetos de tipo Categoria a la lista ...
+		 */
+		lista.add(cat1);			
+		lista.add(cat2);
+		lista.add(cat3);
+		lista.add(cat4);
+		lista.add(cat5);
+		lista.add(cat6);
+
 	}
 	
-	
-	
-	
-	
-	
-	@Override
-	public void guardar(Categoria categoria) {
+	public void guardar(Categoria categoria) {		
 		lista.add(categoria);
-		
 	}
 
-	@Override
 	public List<Categoria> buscarTodas() {
-		
 		return lista;
 	}
 
-	@Override
-	public Categoria buscarPorId(Integer idCategoria) {
+	public Categoria buscarPorId(Integer idCategoria) {			
 		for (Categoria cat : lista) {
-			if(cat.getId()==idCategoria) {
+			if (cat.getId()==idCategoria) {
 				return cat;
 			}
-		}
-		
-		return null;
+		}		
+		return null;	
 	}
 
 }
