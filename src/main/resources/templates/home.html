@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,25 +46,30 @@
       </div>
       <hr>
 
-      <div class="container" > 
+      <div class="container"> 
         <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
         <hr>
+        
+        
         <div class="row" th:each="vacante : ${vacantes}">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/images/{img} (img=${vacante.imagen}) }" alt="Generic placeholder image" width="220" height="220">            
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen})}" alt="Generic placeholder image" width="220" height="220">            
           </div>
           <div class="col-md-9">
             <h2 th:text="${vacante.nombre}"></h2>
-            <h6 class="card-title"><strong>Categoría: </strong> <span></span></h6>
-            <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vacante.fecha}"> </span></h6>
-            <p th:text="${vacante.descripcion}"></p>
-            <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) } "role="button">Detalles &raquo;</a></p>
+            <h6 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}"></span></h6>
+            <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vacante.fecha}"> </span></h6>                
+            <p th:text="${vacante.descripcion}"> </p>
+            <p><a class="btn btn-secondary" th:href="@{/vacantes/view/{id} (id=${vacante.id}) }" role="button">Detalles &raquo;</a></p>            
           </div>
-        </div>
-       </div>
+        </div>  
+              
+		  <hr>	
+      </div> <!-- /container -->
+
     </main>
 
-    <footer class="footer" th:insert="fragments/footer :: footer-principal">
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer">
       
     </footer>
 

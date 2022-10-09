@@ -67,23 +67,17 @@ public class VacantesController {
 	}
 	
 	
-	
-	
-	
 	@PostMapping("/save")
 	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes attributes, 
 			@RequestParam("archivoImagen") MultipartFile multiPart ) {
 		
 		if (result.hasErrors()) {
-			
 			for (ObjectError error: result.getAllErrors()){
 				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
 				}
 			
 			return "vacantes/formVacante";
 			}
-		
-		
 		
 		if (!multiPart.isEmpty()) {
 			//String ruta = "/empleos/img-vacantes/"; // Linux/MAC

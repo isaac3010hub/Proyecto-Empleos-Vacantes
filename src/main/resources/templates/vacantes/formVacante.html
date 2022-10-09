@@ -18,9 +18,7 @@
 
   <body>
 
-    <header th:insert="fragments/menu :: menu-principal">
-      
-    </header>
+    <header th:insert="fragments/menu :: menu-principal"></header>
 
     <main role="main">     
       <hr>
@@ -29,19 +27,29 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multiPart/form-data">     
+          
+          
+          
+          
+            <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data">
             
-            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
-            Por favot Corriga los Sig. Errores: 
-            	<ul>
-            	<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
-            	</ul>
-            </div>
-                     
+            
+              
+                        
+             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+				Por favor corrija los siguientes errores:
+				<ul>
+				<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+				</ul>
+				</div>         
+               
+                        
               <div class="row">
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{imagen}">
                     <input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" placeholder="Titulo de la oferta de trabajo" required="required">
                   </div>
                 </div>
@@ -56,16 +64,21 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
-                    <select class="form-control" th:field="*{categoria.id}" id="categoria">
-                      	<option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
-                     </select>
+                    
+                    
+                    
+                     <select class="form-control" th:field="*{categoria.id}">
+                      <option th:each="categoria : ${categorias}" 
+		                      th:value="${categoria.id}" 
+		                      th:text="${categoria.nombre}"></option>                     
+                    </select>
                   </div>
                 </div>
 
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="estatus">Estatus</label>
-                    <select class="form-control" name="estatus" th:field="*{estatus}" id="estatus">
+                    <select class="form-control" th:field="*{estatus}" name="estatus" id="estatus">
 					  <option value="Creada">Creada</option>
                       <option value="Aprobada">Aprobada</option>
                       <option value="Eliminada">Eliminada</option>	
@@ -75,7 +88,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="fecha">Fecha de Publicación</label>
-                    <input type="text" class="form-control" name="fecha" th:field="*{fecha}" id="fecha" placeholder="Fecha de publicacion" required="required">
+                    <input type="text" class="form-control" th:field="*{fecha}" name="fecha" id="fecha" placeholder="Fecha de publicacion" required="required">
                   </div>  
                 </div>
                 <div class="col-md-3"> 
@@ -94,7 +107,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="salario">Salario Ofrecido (Aprox)</label>
-                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
+                    <input type="text" class="form-control"  th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
@@ -114,10 +127,10 @@
                 </div> 
                 <div class="col-md-3">
                   <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/images/construccion-logo.png}" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen})}" alt="Generic placeholder image" width="200" height="200">            
                 </div>
               </div> 
-              <button  type="submit" class="btn btn-primary">Guardar</button>  
+              <button type="submit" class="btn btn-primary">Guardar</button>  
             </form>
           </div>
         </div>
@@ -125,8 +138,13 @@
 
     </main>
 
-    <footer class="footer" th:insert="fragments/footer :: footer-principal">
-      
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2019 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 | Autor: Iv&aacute;n E. Tinajero D&iacute;az | &middot; <a href="#">Privacy</a>
+          &middot; <a href="#">Terms</a>
+        </p>
+      </div>
     </footer>
 
     <!-- Bootstrap core JavaScript
@@ -151,7 +169,7 @@
                     | bullist numlist outdent indent | forecolor backcolor table code"
       });
       
-       
+   
       
     </script>
   </body>
