@@ -60,10 +60,15 @@ public class CategoriasController {
 	
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable("id") int idCategoria, RedirectAttributes attributes) {
+		try {
 		System.out.println("Borrando categoria con id: " + idCategoria);
 		serviceCategorias.eliminar(idCategoria);
 		attributes.addFlashAttribute("msg", "La categoria fue eliminada");
 		return "redirect:/categorias/index";
+		}catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 	
 	@GetMapping("/edit/{id}")
