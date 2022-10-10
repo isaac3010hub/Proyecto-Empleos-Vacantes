@@ -36,9 +36,6 @@ public class Usuario {
 			)
 	private List<Perfil> perfiles;
 	
-	
-	
-	
 	public void agregar(Perfil tempPerfil) {
 		if (perfiles == null) {
 			perfiles = new LinkedList<Perfil>();
