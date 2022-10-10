@@ -18,8 +18,10 @@
 
   <body>
 
-    <header th:insert="fragments/menu :: menu-principal"></header>
-
+    <header th:insert="fragments/menu :: menu-principal">
+     
+    </header>
+    
     <main role="main">     
       <hr>
       <div class="container"> 
@@ -27,23 +29,13 @@
         <div class="card">
           <h4 class="card-header"><strong>Datos de la oferta de trabajo</strong></h4>              
           <div class="card-body">
-          
-          
-          
-          
-            <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data">
-            
-            
-              
-                        
-             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+            <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data"> 
+            <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
 				Por favor corrija los siguientes errores:
-				<ul>
-				<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
-				</ul>
-				</div>         
-               
-                        
+					<ul>
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+					</ul>
+			</div>             
               <div class="row">
                 <div class="col-md-3"> 
                   <div class="form-group">
@@ -64,13 +56,8 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="categoria">Categoría</label>
-                    
-                    
-                    
-                     <select class="form-control" th:field="*{categoria.id}">
-                      <option th:each="categoria : ${categorias}" 
-		                      th:value="${categoria.id}" 
-		                      th:text="${categoria.nombre}"></option>                     
+                    <select class="form-control" th:field="*{categoria.id}">
+                      <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
                     </select>
                   </div>
                 </div>
@@ -107,7 +94,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="salario">Salario Ofrecido (Aprox)</label>
-                    <input type="text" class="form-control"  th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
+                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
@@ -127,7 +114,7 @@
                 </div> 
                 <div class="col-md-3">
                   <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen})}" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen} ) }" alt="Generic placeholder image" width="200" height="200">            
                 </div>
               </div> 
               <button type="submit" class="btn btn-primary">Guardar</button>  
@@ -138,14 +125,7 @@
 
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <p>
-          &copy; 2019 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 | Autor: Iv&aacute;n E. Tinajero D&iacute;az | &middot; <a href="#">Privacy</a>
-          &middot; <a href="#">Terms</a>
-        </p>
-      </div>
-    </footer>
+    <footer th:insert="fragments/footer :: pie-pagina" class="footer"></footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -169,7 +149,7 @@
                     | bullist numlist outdent indent | forecolor backcolor table code"
       });
       
-   
+      
       
     </script>
   </body>
