@@ -18,6 +18,7 @@
           </ul>  
           <a class="btn btn-primary" th:href="@{/index}">Ingresar</a>&nbsp;
           <a class="btn btn-primary" th:href="@{/create}">Registrarse</a>&nbsp;
+		<span class="text-light">Bienvenido</span>&nbsp;<span class="text-light" sec:authentication="name"></span>
           <a class="btn btn-primary" th:href="@{/logout}">Salir</a>
         </div>
       </nav>
