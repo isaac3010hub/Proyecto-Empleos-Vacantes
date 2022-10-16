@@ -26,7 +26,7 @@
         <div class="card">
           <h4 class="card-header"><strong>Formulario de registro</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/save}" method="post" th:object="${usuario}"> 
+            <form th:action="@{/signup}" method="post" th:object="${usuario}"> 
             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
 				Por favor corrija los siguientes errores:
 					<ul>
